@@ -87,6 +87,10 @@
 
 .delete-game-btn {
   position: absolute;
+  left: 100%;
+  transform: translate(-50%, 37.5%);
+  width: 40px;
+  height: 40px;
   top: 10px;
   right: 10px;
   background: none;
