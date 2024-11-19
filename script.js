@@ -142,6 +142,59 @@ function refreshTitle() {
   });
 }
 
+function getTimeControlCategory(timeControl) {
+  // Normalize input to handle various formats
+  const parseTimeControl = (tc) => {
+    const cleanTC = String(tc).toLowerCase().replace(/\s+/g, '');
+    
+    let initialTime, increment;
+    
+    // Split time and increment
+    if (cleanTC.includes('+')) {
+      [initialTime, increment] = cleanTC.split('+').map(Number);
+    } else if (cleanTC.includes('|')) {
+      [initialTime, increment] = cleanTC.split('|').map(Number);
+    } else if (cleanTC.includes('min')) {
+      initialTime = Number(cleanTC.replace('min', ''));
+      increment = 0;
+    } else {
+      initialTime = Number(cleanTC);
+      increment = 0;
+    }
+
+    return { initialTime, increment };
+  };
+
+  // Classify time control based on initial time and increment
+  const classifyTimeControl = (initial, increment) => {
+    // Blitz criteria
+    if (initial <= 10 && increment <= 5) {
+      return 'Blitz';
+    }
+    
+    // Rapid criteria
+    if ((initial > 10 && initial <= 30) || 
+        (initial <= 15 && increment > 5 && increment <= 10)) {
+      return 'Rapid';
+    }
+    
+    // Classical criteria
+    if (initial > 30 || (initial > 15 && increment > 10)) {
+      return 'Classical';
+    }
+    
+    // Default fallback
+    return 'Blitz';
+  };
+
+  try {
+    const { initialTime, increment } = parseTimeControl(timeControl);
+    return classifyTimeControl(initialTime, increment);
+  } catch (error) {
+    return 'Unknown';
+  }
+}
+
 function addGame(event) {
   event.preventDefault();
 
@@ -156,9 +209,12 @@ function addGame(event) {
   const result = document.getElementById("result").value;
   const tournament = document.getElementById("tournament").value;
   const round = parseInt(document.getElementById("round").value);
-  const time = document.getElementById("time").value || 0;
+  const timeControl = document.getElementById("time").value || 0;
   const date = document.getElementById("date").value;
   const gameLink = document.getElementById("gameLink").value;
+
+  const timeList = [timeControl, getTimeControlCategory(timeControl)]
+  const time = timeList.join(" • ")
 
   const game = {
     id: Date.now(),
@@ -231,8 +287,8 @@ function displayGames(searchTerm = "") {
         <a href="${game.gameLink}" target="_blank" class="game-entry-link">
           <div class="game-entry" data-game-id="${game.id}">
               <div class="game-details" class="inlineForm" style="align-items: center;">
-                  <strong>${game.tournament} : <span class="game-time">${game.time}</span></strong>
-                  <span class="entry-date"><strong>${game.date}</strong></span>
+                  <strong>${game.tournament}</strong>
+                  <span class="entry-date"><span class="game-time">${game.time}</span> | <strong>${game.date}</strong></span>
               </div>
               <div class="player-details">
                 <div class="player-left">
