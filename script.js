@@ -281,36 +281,54 @@ function displayGames(searchTerm = "") {
     )
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  gamesList.innerHTML = filteredGames
-    .map(
-      (game) => `
-        <a href="${game.gameLink}" target="_blank" class="game-entry-link">
-          <div class="game-entry" data-game-id="${game.id}">
-              <div class="game-details" class="inlineForm" style="align-items: center;">
-                  <strong>${game.tournament}</strong>
-                  <span class="entry-date"><span class="game-time">${game.time}</span> | <strong>${game.date}</strong></span>
-              </div>
-              <div class="player-details">
-                <div class="player-left">
-                      <span>
-                          <span class="title">${game.whiteTitle}</span> ${game.white} (${game.whiteRating})
-                      </span>
+  // Group games by tournament
+  const gamesByTournament = filteredGames.reduce((acc, game) => {
+    if (!acc[game.tournament]) {
+      acc[game.tournament] = [];
+    }
+    acc[game.tournament].push(game);
+    return acc;
+  }, {});
+
+  // Generate HTML with tournament headers
+  gamesList.innerHTML = Object.entries(gamesByTournament)
+    .map(([tournament, tournamentGames]) => `
+      <div class="tournament-section">
+        <h2 class="tournament-header">${tournament}<hr></h2>
+        ${tournamentGames
+          .map(
+            (game) => `
+              <a href="${game.gameLink}" target="_blank" class="game-entry-link">
+                <div class="game-entry" data-game-id="${game.id}">
+                    <div class="game-details" class="inlineForm" style="align-items: center;">
+                        <strong>${game.tournament}</strong>
+                        <span class="entry-date"><span class="game-time">${game.time}</span> | <strong>${game.date}</strong></span>
+                    </div>
+                    <div class="player-details">
+                      <div class="player-left">
+                            <span>
+                                <span class="title">${game.whiteTitle}</span> ${game.white} (${game.whiteRating})
+                            </span>
+                      </div>
+                      <div class="game-result">
+                        <strong>${game.result}</strong>
+                      </div>
+                      <div class="player-right">
+                        <span>
+                          <span class="title">${game.blackTitle}</span> ${game.black} (${game.blackRating})
+                        </span>
+                      </div>
+                    </div>
+                    <button class="delete-game-btn" onclick="deleteGame(${game.id}); event.preventDefault()"><i class="fa-solid fa-delete-left"></i></button>
                 </div>
-                <div class="game-result">
-                  <strong>${game.result}</strong>
-                </div>
-                <div class="player-right">
-                  <span>
-                    <span class="title">${game.blackTitle}</span> ${game.black} (${game.blackRating})
-                  </span>
-                </div>
-              </div>
-              <button class="delete-game-btn" onclick="deleteGame(${game.id}); event.preventDefault()"><i class="fa-solid fa-delete-left"></i></button>
-          </div>
-        </a>
-      `
-    )
+              </a>
+            `
+          )
+          .join("")}
+      </div>
+    `)
     .join("");
+
   refreshTitle();
 }
 
