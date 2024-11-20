@@ -81,3 +81,8 @@ body.dark-theme {
     background-color: #e0e0e0;
     color: #2c2c2c;
 }
+
+.dark-theme .tournament-header {
+    background-color: #e0e0e0;
+    color: #2c3e50;
+}
