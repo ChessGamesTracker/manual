@@ -305,7 +305,7 @@ function displayGames(searchTerm = "") {
                   </span>
                 </div>
               </div>
-              <button class="delete-game-btn" onclick="deleteGame(${game.id}); event.preventDefault()">🗑️</button>
+              <button class="delete-game-btn" onclick="deleteGame(${game.id}); event.preventDefault()"><i class="fa-solid fa-delete-left"></i></button>
           </div>
         </a>
       `
