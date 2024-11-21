@@ -294,7 +294,10 @@ function displayGames(searchTerm = "") {
   gamesList.innerHTML = Object.entries(gamesByTournament)
     .map(([tournament, tournamentGames]) => `
       <div class="tournament-section">
-        <h2 class="tournament-header">${tournament}</h2>
+        <div class="tournament-header">
+          <h3>${tournament}</h3>
+          <h3 class="dot">●</h3>
+        </div>
         ${tournamentGames
           .map(
             (game) => `
