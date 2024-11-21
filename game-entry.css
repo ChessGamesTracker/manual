@@ -142,7 +142,7 @@
   color: var(--deep-blue);
   padding: 10px 25px;
   margin-bottom: 10px;
-  border-top: var(--deep-blue)60 2px solid;
+  border-top: var(--deep-blue-light) 2px solid;
   border-bottom: var(--deep-blue) 2px solid;
 }
 
