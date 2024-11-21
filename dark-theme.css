@@ -82,6 +82,6 @@ body.dark-theme {
 
 .dark-theme .tournament-header {
     color: var(--white-e0);
-    border-top: var(--white-e0)60 2px solid;
+    border-top: var(--white-e0-light) 2px solid;
     border-bottom: var(--white-e0) 2px solid;
 }
