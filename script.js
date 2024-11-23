@@ -304,7 +304,7 @@ function displayGames(searchTerm = "") {
               <a href="${game.gameLink}" target="_blank" class="game-entry-link">
                 <div class="game-entry" data-game-id="${game.id}">
                     <div class="game-details" class="inlineForm" style="align-items: center;">
-                        <strong>${game.tournament}</strong>
+                        <strong><div class="game-tournament">${game.tournament}</div></strong>
                         <span class="entry-date"><span class="game-time">${game.time}</span> | <strong>${game.date}</strong></span>
                     </div>
                     <div class="player-details">
