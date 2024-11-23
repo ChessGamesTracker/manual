@@ -1,4 +1,5 @@
 :root {
+    /*Colours*/
     --white-container : #f9f9f9;
     --white-f1 : #f1f1f1;
     --white-e : #eee;
@@ -19,4 +20,7 @@
     --grey-444 : #444;
     --grey-666 : #666;
     --grey-888 : #888;
+
+    /*Measurements*/
+    --game-entry-padding-y : 15px;
 }
