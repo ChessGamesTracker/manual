@@ -1,0 +1,52 @@
+/* Add media queries for better responsiveness */
+@media screen and (max-width: 800px) {
+  .container {
+    padding: 35px; /* Further reduce padding on smaller screens */
+  }
+
+  .tab-buttons {
+    flex-direction: column; /* Stack tab buttons vertically */
+    align-items: center;
+  }
+
+  .tab-buttons button {
+    margin: 5px 0; /* Adjust spacing between buttons */
+    width: 80%; /* Make buttons wider on small screens */
+  }
+
+  .inlineForm {
+    gap: 10px;
+  }
+
+  input, select, button {
+    width: 100%; /* Full width inputs */
+  }
+
+  .player-details {
+    flex-direction: column; /* Stack player details vertically */
+    text-align: center;
+  }
+
+  .player-left, .player-right {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .game-result {
+    position: absolute;
+    max-width: fit-content;
+    right: 10%;
+    transform: translate(0, -75%) !important;
+  }
+}
+
+@media screen and (max-width: 515px) { 
+ .container h1 {
+    font-size: 5vw;
+ }   
+ .game-tournament {
+    display: none;
+ }
+ .entry-date {
+    justify-content: center;
+ }
+}
