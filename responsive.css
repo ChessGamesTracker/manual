@@ -18,7 +18,9 @@
     gap: 10px;
   }
 
-  input, select, button {
+  input,
+  select,
+  button {
     width: 100%; /* Full width inputs */
   }
 
@@ -27,7 +29,8 @@
     text-align: center;
   }
 
-  .player-left, .player-right {
+  .player-left,
+  .player-right {
     text-align: center;
     margin-top: 10px;
   }
@@ -39,14 +42,23 @@
   }
 }
 
-@media screen and (max-width: 515px) { 
- .container h1 {
-    font-size: 5vw;
- }   
- .game-tournament {
+@media screen and (max-width: 750px) {
+  .game-tournament {
     display: none;
- }
- .entry-date {
+  }
+  .game-details {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
+@media screen and (max-width: 515px) {
+  .container h1 {
+    font-size: 5vw;
+  }
+
+  .entry-date {
     justify-content: center;
- }
+  }
 }
