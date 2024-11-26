@@ -45,9 +45,7 @@
     max-width: fit-content;
     right: 0 !important;
   }
-}
 
-@media screen and (max-width: 750px) {
   .game-tournament {
     display: none;
   }
@@ -56,14 +54,14 @@
     justify-content: center !important;
     align-items: center !important;
   }
+
+  .entry-date {
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 515px) {
   .container h1 {
     font-size: 5vw;
-  }
-
-  .entry-date {
-    justify-content: center;
   }
 }
