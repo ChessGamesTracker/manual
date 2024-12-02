@@ -165,7 +165,7 @@ button:hover {
 }
 
 .ratingInput::placeholder {
-  text-align: right;
+  text-align: center;
 }
 
 .titleInput::placeholder {
