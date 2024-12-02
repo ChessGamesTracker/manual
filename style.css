@@ -18,21 +18,17 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  padding: 20px;
   color: #2c2c2c;
 }
 
 .container {
   background-color: var(--white-container);
   padding: 50px;
-  border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  max-width: 900px;
   width: 100%; /* Full width up to max-width */
   position: relative;
   overflow: hidden;
   animation: fadeIn 0.5s ease-out;
-  margin: 20px; /* Added margin for breathing room on small screens */
 }
 
 @keyframes fadeIn {
