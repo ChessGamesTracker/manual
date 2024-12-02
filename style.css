@@ -28,7 +28,7 @@ body {
   width: 100%; /* Full width up to max-width */
   position: relative;
   overflow: hidden;
-  animation: fadeIn 0.5s ease-out;
+  /*animation: fadeIn 0.5s ease-out;*/
 }
 
 @keyframes fadeIn {
