@@ -87,6 +87,11 @@
   font-weight: 600;
 }
 
+.game-entry .player-rating {
+  font-weight: 600;
+  font-family: "Geist Mono", monospace;
+}
+
 .delete-game-btn {
   position: absolute;
   left: 100%;
