@@ -43,7 +43,7 @@ body.dark-theme {
 }
 
 .dark-theme .player-details span {
-    color: var(--white-e0);
+    color: var(--white-d);
 }
 
 .dark-theme input, 
