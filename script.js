@@ -310,7 +310,7 @@ function displayGames(searchTerm = "") {
                     <div class="player-details">
                       <div class="player-left">
                             <span>
-                                <span class="title">${game.whiteTitle}</span> ${game.white} (${game.whiteRating})
+                                <span class="title">${game.whiteTitle}</span> ${game.white} <span class="player-rating">(${game.whiteRating})</span>
                             </span>
                       </div>
                       <div class="game-result">
@@ -318,7 +318,7 @@ function displayGames(searchTerm = "") {
                       </div>
                       <div class="player-right">
                         <span>
-                          <span class="title">${game.blackTitle}</span> ${game.black} (${game.blackRating})
+                          <span class="title">${game.blackTitle}</span> ${game.black} <span class="player-rating">(${game.blackRating})</span>
                         </span>
                       </div>
                     </div>
