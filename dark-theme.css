@@ -85,3 +85,8 @@ body.dark-theme {
     border-top: var(--white-e0-light) 2px solid;
     border-bottom: var(--white-e0) 2px solid;
 }
+
+.dark-theme .game-entry .game-round {
+    color: var(--black-2c);
+    background-color: var(--white-e0);
+}
