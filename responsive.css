@@ -26,7 +26,7 @@
 
   .player-details {
     flex-direction: column; /* Stack player details vertically */
-    text-align: center;
+    text-align: left;
   }
 
   .player-left,
