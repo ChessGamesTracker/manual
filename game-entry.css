@@ -73,11 +73,6 @@
   transition: color 0.3s ease;
 }
 
-.game-entry .player-left a:hover,
-.game-entry .player-right a:hover {
-  color: var(--blue);
-}
-
 .game-entry .title {
   display: inline-block;
   padding: 0 4px;
