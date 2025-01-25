@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Chess Games Tracker - Log and Analyze Your Chess Matches">
+    <meta name="keywords" content="chess, games, tracker, FIDE, ratings">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chess Games Tracker</title>
     <link rel="icon" type="image/x-icon" href="knight.ico" />
@@ -13,7 +15,9 @@
   </head>
   <body>
     <div class="container">
-      <h1>Chess Games Tracker</h1>
+      <h1>
+        Chess Games Tracker
+      </h1>
       <div class="tab-buttons">
         <button class="tab-btn active">Add Game</button>
         <button class="tab-btn">View Games</button>
@@ -102,10 +106,7 @@
           </div>
           <input type="date" id="date" required />
           <input type="url" id="gameLink" placeholder="Game Link" required />
-          <button type="submit" id="addGame">
-            Add Game
-            <div class="loader" id="loader"></div>
-          </button>
+          <button type="submit" id="addGame"><span>Add Game</span><div class="loader" id="loader"></div></button>
         </form>
       </div>
       <div class="tab-content">
