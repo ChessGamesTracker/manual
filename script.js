@@ -195,7 +195,18 @@ function getTimeControlCategory(timeControl) {
   }
 }
 
+function showLoader() {
+  document.getElementById("loader").style.display = "inline";
+  document.querySelector("#addGame span").innerHTML = "Loading";
+}
+
+function hideLoader() {
+  document.getElementById("loader").style.display = "none";
+  document.querySelector("#addGame span").innerHTML = "Add Game";
+}
+
 function addGame(event) {
+  showLoader();
   event.preventDefault();
 
   const playerWhite = capitalize(document.getElementById("playerWhite").value);
@@ -236,6 +247,9 @@ function addGame(event) {
   saveGames();
   displayGames();
   event.target.reset();
+
+  hideLoader();
+
   alert(
     `${toUnicodeVariant(
       game.whiteTitle,
