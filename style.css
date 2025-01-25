@@ -30,19 +30,6 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 320px;
-  background: url("/api/placeholder/900/320") center/cover;
-  z-index: -1;
-  border-radius: 16px 16px 0 0;
-  filter: brightness(0.8);
-}
-
 /* Typography */
 .container h1 {
   text-align: center;
@@ -58,14 +45,14 @@ body {
 .tab-buttons {
   display: flex;
   justify-content: center;
-  margin-bottom: 35px;
+  padding-bottom: 35px;
 }
 
 .tab-buttons button {
   background-color: var(--white-container);
   border: 2px solid var(--white-d);
   padding: 14px 28px;
-  font-size: 15px;
+  font-size: var(--small);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -124,14 +111,18 @@ button {
   padding: 14px 18px;
   background-color: var(--white-container);
   border: 1px solid var(--white-c);
-  border-radius: 10px; /* Uniform border-radius */
+  border-radius: var(--border-radius); /* Uniform border-radius */
   font-family: "Poppins", sans-serif;
-  font-size: 15px;
+  font-size: var(--small);
 }
 
 input:focus,
 select:focus {
   outline: none;
+}
+
+input:focus::placeholder {
+  color: var(--white-container);
 }
 
 button {
@@ -144,17 +135,18 @@ button {
 }
 
 #addGame {
+  height: calc(1.25*(var(--small) + var(--normal)));
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  gap: var(--medium);
 }
 
 /* Inline Form and Input Specific Styles */
 .inlineForm {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: calc(var(--medium) / 2);
 }
 
 .flex {
@@ -197,7 +189,7 @@ button {
 /**/
 /* HTML:  */
 .loader {
-  width: 22px;
+  width: var(--normal);
   aspect-ratio: 1;
   border-radius: 50%;
   border: 5px solid var(--white-e0-95);
