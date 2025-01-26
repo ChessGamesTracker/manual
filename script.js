@@ -226,6 +226,11 @@ function abbreviateTitle(title) {
   return titleMap[title.toLowerCase().replace(/\s+/g, "")] || title;
 }
 
+function formatName(name) {
+  let parts = name.split(", ").map(part => part.trim());
+  return parts.length === 2 ? `${parts[1]} ${parts[0]}` : name;
+}
+
 function addGame(event) {
   showLoader();
   event.preventDefault();
@@ -238,8 +243,8 @@ function addGame(event) {
     return;
   }
 
-  const playerWhite = capitalize(document.getElementById("playerWhite").value);
-  const playerBlack = capitalize(document.getElementById("playerBlack").value);
+  const playerWhite = formatName(capitalize(document.getElementById("playerWhite").value));
+  const playerBlack = formatName(capitalize(document.getElementById("playerBlack").value));
 
   const whiteRating = parseInt(document.getElementById("whiteRating").value) || 0;
   const blackRating = parseInt(document.getElementById("blackRating").value) || 0;
@@ -299,7 +304,7 @@ function addGame(event) {
       "bold sans",
       "sans"
     )} ${playerWhite} vs ${toUnicodeVariant(
-      blackTitle,
+      game.blackTitle,
       "bold sans",
       "sans"
     )} ${playerBlack} Game Added!`
