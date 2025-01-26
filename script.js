@@ -230,6 +230,14 @@ function addGame(event) {
   showLoader();
   event.preventDefault();
 
+  const result = document.getElementById("result").value;
+
+  if (result === "0") {
+    alert("Please select a result!");
+    hideLoader();
+    return;
+  }
+
   const playerWhite = capitalize(document.getElementById("playerWhite").value);
   const playerBlack = capitalize(document.getElementById("playerBlack").value);
 
@@ -251,7 +259,7 @@ function addGame(event) {
     black: playerBlack,
     blackRating: blackRating, // This line should be present
     blackTitle: abbreviateTitle(document.getElementById("blackTitle").value.toUpperCase()),
-    result: document.getElementById("result").value,
+    result: result,
     tournament: tournament,
     round: round,
     time: time,
