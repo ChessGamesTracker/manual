@@ -136,8 +136,11 @@ function capitalize(str) {
 
 function refreshTitle() {
   document.querySelectorAll(".title").forEach(function (titleElement) {
-    if (!titleElement.textContent.trim()) {
+    const content = titleElement.textContent.trim().toLowerCase();
+    if (!content || content === "none") {
       titleElement.style.display = "none";
+    } else {
+      titleElement.style.display = ""; // Reset to default if content is valid
     }
   });
 }
@@ -205,43 +208,75 @@ function hideLoader() {
   document.querySelector("#addGame span").innerHTML = "Add Game";
 }
 
+function abbreviateTitle(title) {
+  if (!title) return ""; // Ensure empty input doesn't cause errors
+
+  const titleMap = {
+    grandmaster: "GM",
+    internationalmaster: "IM",
+    fidemaster: "FM",
+    candidatemaster: "CM",
+    womangrandmaster: "WGM",
+    womaninternationalmaster: "WIM",
+    womanfidemaster: "WFM",
+    womancandidatemaster: "WCM",
+    nationalmaster: "NM",
+  };
+
+  return titleMap[title.toLowerCase().replace(/\s+/g, "")] || title;
+}
+
 function addGame(event) {
   showLoader();
   event.preventDefault();
 
   const playerWhite = capitalize(document.getElementById("playerWhite").value);
-  const whiteRating =
-    parseInt(document.getElementById("whiteRating").value) || 0;
-  const whiteTitle = document.getElementById("whiteTitle").value.toUpperCase();
   const playerBlack = capitalize(document.getElementById("playerBlack").value);
-  const blackRating =
-    parseInt(document.getElementById("blackRating").value) || 0;
-  const blackTitle = document.getElementById("blackTitle").value.toUpperCase();
-  const result = document.getElementById("result").value;
-  const tournament = document.getElementById("tournament").value;
-  const round = parseInt(document.getElementById("round").value);
-  const timeControl = document.getElementById("time").value || 0;
-  const date = document.getElementById("date").value;
-  const gameLink = document.getElementById("gameLink").value;
 
-  const timeList = [timeControl, getTimeControlCategory(timeControl)]
-  const time = timeList.join(" • ")
+  const whiteRating = parseInt(document.getElementById("whiteRating").value) || 0;
+  const blackRating = parseInt(document.getElementById("blackRating").value) || 0;
+
+  const timeControl = document.getElementById("time").value || "";
+  const time = `${timeControl} • ${getTimeControlCategory(timeControl)}`;
+
+  const tournament = document.getElementById("tournament").value;
+  const round = parseInt(document.getElementById("round").value) || 1;
+  const date = document.getElementById("date").value;
 
   const game = {
     id: Date.now(),
     white: playerWhite,
     whiteRating: whiteRating, // This line should be present
-    whiteTitle: whiteTitle,
+    whiteTitle: abbreviateTitle(document.getElementById("whiteTitle").value.toUpperCase()),
     black: playerBlack,
     blackRating: blackRating, // This line should be present
-    blackTitle: blackTitle,
-    result: result,
+    blackTitle: abbreviateTitle(document.getElementById("blackTitle").value.toUpperCase()),
+    result: document.getElementById("result").value,
     tournament: tournament,
     round: round,
     time: time,
     date: date,
-    gameLink: gameLink,
+    gameLink: document.getElementById("gameLink").value,
   };
+
+  // 🚀 **Add duplicate check here BEFORE pushing to games**
+  if (games.some(g => 
+    g.white === playerWhite && 
+    g.black === playerBlack && 
+    g.date === date && 
+    g.tournament === tournament && 
+    g.round === round)) {
+    hideLoader();
+    alert("This game already exists!");
+    return;
+  } else if (games.some(g => 
+    g.date === date && 
+    g.tournament === tournament && 
+    g.round === round)) {
+      hideLoader();
+      alert("This game already exists!");
+      return;
+    }
 
   games.push(game);
   saveGames();
@@ -278,8 +313,6 @@ function deleteGame(id) {
     games = games.filter((game) => game.id !== id);
     saveGames();
     displayGames();
-  } else {
-    alert("Cancelled!");
   }
 }
 
